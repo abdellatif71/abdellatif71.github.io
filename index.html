@@ -23,66 +23,41 @@
     <div id="news-container"></div>
 
     <script>
-        async function fetchApi(){
-try {
+        async function fetchApi() {
+            try {
+                // Add your API URL here
+                const response = await fetch('https://newsapi.org/v2/top-headlines?country=de&apiKey=5763595b2c4446cdaae3a00385b2add4');
 
-    const response = await fetch('')
+                // Parse the JSON data
+                const data = await response.json();
 
-    const data = await response.json();
+                // Check if the response is valid
+                if (data.status === 'ok') {
+                    const newsContainer = document.getElementById('news-container');
+                    newsContainer.innerHTML = '';
 
+                    // Loop through each article and display it
+                    data.articles.forEach(article => {
+                        const articleHTML = `
+                            <div class="news-article">
+                                <h2>${article.title}</h2>
+                                <p>${article.description}</p>
+                                <a href="${article.url}" target="_blank">Weiter lesen...</a>
+                            </div>
+                        `;
+                        newsContainer.innerHTML += articleHTML;
+                    });
+                } else {
+                    console.error('Error fetching data:', data.message);
+                }
 
-    console.log(data);
+            } catch (error) {
+                console.error('Es gab ein Problem:', error);
+            }
+        }
 
-
-        
-
-        const newsContainer = document.getElementById('news-container')
-
-        newsContainer.innerHTML = '';
-
-        data.articles.forEach(articel => {
-
-
-        
-        const articleHTML =`
-        
-    <div class="news-articel">
-
-        <h2>${articel.title}</h2>
-
-        <p>${articel.description}</p>
-
-        <a href="${articel.url}" target="_blank">  </a>
-
-
-        </div>`;
-
-
-        newsContainer.innerHTML += articleHTML;
-    
-        
-        
-        
-        
-        
-        
-});
-
-} catch(error){
-
-    console.error("irgenwas stimmùt nicht".error)
-}
-
-
-
-}
-
-
-
-    
-
-        window.onload = fetchApi();
-    
+        // Fetch the news when the page loads
+        window.onload = fetchApi;
     </script>
 </body>
 </html>
