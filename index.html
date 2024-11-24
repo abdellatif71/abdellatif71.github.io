@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nachrichten API Beispiel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .news-article {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+        .news-article h2 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Aktuelle Nachrichten</h1>
+    <div id="news-container"></div>
+
+    <script>
+        async function fetchApi(){
+try {
+
+    const response = await fetch('')
+
+    const data = await response.json();
+
+
+    console.log(data);
+
+
+        
+
+        const newsContainer = document.getElementById('news-container')
+
+        newsContainer.innerHTML = '';
+
+        data.articles.forEach(articel => {
+
+
+        
+        const articleHTML =`
+        
+    <div class="news-articel">
+
+        <h2>${articel.title}</h2>
+
+        <p>${articel.description}</p>
+
+        <a href="${articel.url}" target="_blank"> Weiter lesen....... </a>
+
+
+        </div>`;
+
+
+        newsContainer.innerHTML += articleHTML;
+    
+        
+        
+        
+        
+        
+        
+});
+
+} catch(error){
+
+    console.error("irgenwas stimmùt nicht".error)
+}
+
+
+
+}
+
+
+
+    
+
+        window.onload = fetchApi();
+    
+    </script>
+</body>
+</html>
