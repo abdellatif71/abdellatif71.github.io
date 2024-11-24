@@ -41,4 +41,4 @@ The user interface includes:
 1. **API-URL festlegen**:
    Ersetze die leere Zeichenkette bei `fetch('')` im JavaScript-Code mit der URL einer Nachrichten-API. Zum Beispiel:
    ```javascript
-   const response = await fetch('https://newsapi.org/v2/top-headlines?country=de&apiKey=DEIN_API_KEY');
+   const response = await fetch('https://newsapi.org/v2/top-headlines?country=de&apiKey=DEIN_API_KEY'); ok!
